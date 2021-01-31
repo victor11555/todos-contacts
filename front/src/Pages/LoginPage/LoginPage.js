@@ -4,11 +4,15 @@ import SignupForm from '../../Components/SignupForm/SignupForm'
 
 function LoginPage() {
     const [state, setState] = useState(false)
-
+    const loginStateHandler = (e) => {
+        e.preventDefault()
+        setState(!state)
+    }
     return (
         <>
-            {state ? <SignupForm/> : <LoginForm/>}
+            {state ? <SignupForm setState={loginStateHandler}/> : <LoginForm setState={loginStateHandler}/>}
         </>
     )
 }
+
 export default LoginPage;
