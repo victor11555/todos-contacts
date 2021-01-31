@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from 'react-bootstrap'
 
-function LoginForm(props) {
+function LoginForm() {
     return (
         <Container >
             <div>LoginForm</div>

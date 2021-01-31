@@ -1,8 +1,8 @@
 import React from 'react';
 
-function NavBar(props) {
+function NavBar() {
     return (
-        <div></div>
+        <div>NavBar</div>
     );
 }
 

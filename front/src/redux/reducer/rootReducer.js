@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-// import { getProfilesReducer } from './getProfilesReducer'
-// import { getUsersReducer } from './getUsersReducer'
-// import { isLoginReducer } from './isLoginReducer'
+import { userReducer } from './userReducer'
+import { contactsReducer } from './contactsReducer'
 
 export const rootReducer = combineReducers({
-    // profiles: getProfilesReducer,
-    // users: getUsersReducer,
-    // isLogin: isLoginReducer,
+    contacts: contactsReducer,
+    users: userReducer,
 })

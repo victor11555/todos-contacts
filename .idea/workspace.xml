@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb36425d-ba9e-4da1-b8b2-15581c817cd5" name="Default Changelist" comment="" />
+    <list default="true" id="cb36425d-ba9e-4da1-b8b2-15581c817cd5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/Pages/LoginPage/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/Pages/LoginPage/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/redux/reducer/rootReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/redux/reducer/rootReducer.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,9 +33,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/back" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -44,7 +50,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/back" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/front" />
       <recent name="$PROJECT_DIR$/front/src/Pages/SignupPage" />
       <recent name="$PROJECT_DIR$/front/src/Pages/ContentPage" />
       <recent name="$PROJECT_DIR$/front/src/Pages/LoginPage" />
@@ -75,6 +85,7 @@
       <updated>1611905214278</updated>
       <workItem from="1611905215515" duration="5011000" />
       <workItem from="1611976229017" duration="439000" />
+      <workItem from="1612076192037" duration="1177000" />
     </task>
     <servers />
   </component>
