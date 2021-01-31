@@ -7,7 +7,7 @@ export const getProfileAC = () => {
     return dispatch => {
         if (token) {
             fetch(GET_PROFILE_URL, {
-                headers: `Bearer ${token}`
+                headers: {Authorization:`Bearer ${token}`,"Content-type":"Application/json"}
             }).then(res => res.json())
                 .then(user => {
                     if (user.success) {

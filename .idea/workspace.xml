@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb36425d-ba9e-4da1-b8b2-15581c817cd5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/front/src/utils/urls.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/back/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/back/routes/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/redux/actionCreators.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/redux/actionCreators.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/redux/reducer/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/redux/reducer/userReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
