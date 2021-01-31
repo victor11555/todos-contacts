@@ -1,23 +1,19 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
 const User = require('../models/user');
 
 const saltRounds = 12;
+const tokenKey = '1a2b-3c4d-5e6f-7g8h';
 
-function makeToken(user){
-  let payload = {
-    "id": user.id,
-  }
-  const tokenKey = '1a2b-3c4d-5e6f-7g8h';
-  let head = Buffer.from(JSON.stringify({alg: 'HS256', typ: 'jwt'})).toString('base64');
-  let body = Buffer.from(JSON.stringify(payload)).toString('base64');
-  let signature = crypto.createHmac('SHA256', tokenKey).update(`${head}.${body}`).digest('base64');
-  return `${head}.${body}.${signature}`
-}
+router.get('/', async (req, res) => {
+  const { token } = req.body;
+  let data = jwt.verify(token, tokenKey)
+  console.log(data)
+})
 
 router.post('/login', async (req, res, next) => {
   const {
@@ -25,7 +21,7 @@ router.post('/login', async (req, res, next) => {
   } = req.body;
   let user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    let token = makeToken(user);
+    let token = await jwt.sign({id: user.id}, tokenKey, { expiresIn: 60 * 24 } );
     res.json({ success: true, token });
   }
   if (user) {
@@ -39,7 +35,6 @@ router.post('/signup', async (req, res, next) => {
   const {
     name, email, password, phone,
   } = req.body;
-  // console.log(req.body)
     if (await User.findOne({ email })) {
       res.json({ success: false, message: 'have such user' });
     }
@@ -52,8 +47,8 @@ router.post('/signup', async (req, res, next) => {
       todos: [],
     });
   await user.save();
-  let token = makeToken(user);
-  res.json({ success: true, user, token }).status(200);
+  let token = jwt.sign({id: user.id}, tokenKey, { expiresIn: 60 * 24 });
+  res.json({ success: true, token }).status(200);
 });
 
 router.get('/logout', async (req, res, next) => {
