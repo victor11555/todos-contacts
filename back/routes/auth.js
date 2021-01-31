@@ -30,7 +30,7 @@ router.post('/login', async (req, res, next) => {
   } = req.body;
   let user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    let token = makeToken(user);/////
+    let token = makeToken(user);
     res.json({ success: true, user, token });
   }
   if (user) {
