@@ -11,11 +11,6 @@ const saltRounds = 12;
 function makeToken(user){
   let payload = {
     "id": user.id,
-    email: user.email,
-    name: user.name,
-    telephone: user.telephone,
-    contacts: user.contacts,
-    todos: user.todos,
   }
   const tokenKey = '1a2b-3c4d-5e6f-7g8h';
   let head = Buffer.from(JSON.stringify({alg: 'HS256', typ: 'jwt'})).toString('base64');
@@ -31,7 +26,7 @@ router.post('/login', async (req, res, next) => {
   let user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
     let token = makeToken(user);
-    res.json({ success: true, user, token });
+    res.json({ success: true, token });
   }
   if (user) {
     res.json({ success: false, message: 'wrong password' });
@@ -42,8 +37,9 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   const {
-    name, email, password, telephone,
+    name, email, password, phone,
   } = req.body;
+  // console.log(req.body)
     if (await User.findOne({ email })) {
       res.json({ success: false, message: 'have such user' });
     }
@@ -51,7 +47,7 @@ router.post('/signup', async (req, res, next) => {
       name,
       email,
       password: await bcrypt.hash(password, saltRounds),
-      telephone,
+      phone,
       contacts: [],
       todos: [],
     });
