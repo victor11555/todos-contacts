@@ -17,7 +17,7 @@ export const signUpAc = ({email, password, name, phone}) => {
             .then(res => res.json())
             .then(user => {
                 if (user.success) {
-                    dispatch(addUserSuccess(user))
+                  localStorage.setItem('token',JSON.stringify(user.token))
                 }
                 dispatch(addUserFailure(user))
             })

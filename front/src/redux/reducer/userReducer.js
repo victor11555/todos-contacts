@@ -6,7 +6,7 @@ export function userReducer(state = {}, action) {
     switch (action.type) {
         case AUTH_SUCCESS:
 
-            return {...state,state:action.payload.user};
+            return state
         case LOG_IN:
 
             return action.payload;
