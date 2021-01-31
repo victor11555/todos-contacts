@@ -1,4 +1,4 @@
-import {AUTH_FAILURE, AUTH_SUCCESS} from "./actionTypes";
+import {AUTH_FAILURE, AUTH_SUCCESS, LOG_IN} from "./actionTypes";
 
 import {useDispatch} from 'react-redux'
 
@@ -24,6 +24,30 @@ export const signUpAc = ({email, password, name, phone}) => {
     }
 }
 
+export const logInAc = ({email, password}) => {
+  return (dispatch) => {
+    fetch('http://localhost:4000/auth/login', {
+      method: 'POST',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value
+      })
+    })
+    .then(res => res.json())
+    .then(user => {
+      if(user.success){
+        // localStorage.setItem('token', JSON.stringify(user.token))
+        // dispatch(addUserSuccess(user.user))
+        console.log('Auth succeeded')
+      }
+      else{
+        console.log('Auth not succeed');
+      }
+    })
+  }
+}
+
 export const addUserSuccess=(payload)=>{
     return {
         type: AUTH_SUCCESS,
@@ -38,3 +62,9 @@ export const addUserFailure=(payload)=>{
     }
 }
 
+export const loginUserSuccess=(payload)=>{
+  return {
+    type: LOG_IN,
+    payload
+  }
+}
