@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   const { email } = data;
   let user = await User.findOne({ email });
   if (user) {
-    res.json({ success: false, user });
+    res.json({ success: true, user });
   } else {
     res.json({ success: false, message: 'no such user' });
   }
