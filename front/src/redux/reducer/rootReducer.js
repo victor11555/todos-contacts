@@ -4,5 +4,5 @@ import { contactsReducer } from './contactsReducer'
 
 export const rootReducer = combineReducers({
     contacts: contactsReducer,
-    users: userReducer,
+    user: userReducer,
 })
