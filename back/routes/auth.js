@@ -14,7 +14,11 @@ router.get('/', async (req, res) => {
   let data = jwt.verify(token, tokenKey)
   const { email } = data;
   let user = await User.findOne({ email });
-  res.json({ success: true, user });
+  if (user) {
+    res.json({ success: false, user });
+  } else {
+    res.json({ success: false, message: 'no such user' });
+  }
 })
 
 router.post('/login', async (req, res, next) => {
