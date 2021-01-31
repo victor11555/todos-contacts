@@ -12,7 +12,9 @@ const tokenKey = '1a2b-3c4d-5e6f-7g8h';
 router.get('/', async (req, res) => {
   const { token } = req.body;
   let data = jwt.verify(token, tokenKey)
-  console.log(data)
+  const { email } = data;
+  let user = await User.findOne({ email });
+  res.json({ success: true, user });
 })
 
 router.post('/login', async (req, res, next) => {
@@ -49,10 +51,6 @@ router.post('/signup', async (req, res, next) => {
   await user.save();
   let token = jwt.sign({id: user.id}, tokenKey, { expiresIn: 60 * 24 });
   res.json({ success: true, token }).status(200);
-});
-
-router.get('/logout', async (req, res, next) => {
-
 });
 
 module.exports = router;

@@ -18,7 +18,6 @@ function App() {
         <Switch>
           <Route exact path='/' component={LoginPage} />
           <Route exact path='/main' component={ContentPage} />
-
         </Switch>
       </div>
   );
