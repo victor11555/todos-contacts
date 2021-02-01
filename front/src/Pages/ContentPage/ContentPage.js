@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Form, ListGroup,ListGroupItem} from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 import {useSelector} from "react-redux";
-import Userlist from "../../UserList/Userlist";
+import Userlist from "../.UserList/Userlist";
 
 function ContentPage(props) {
 
