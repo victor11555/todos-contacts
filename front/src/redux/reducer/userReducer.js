@@ -7,9 +7,8 @@ export function userReducer(state = {user:{},isLogged:false}, action) {
 
             return {...state,user:action.payload,isLogged:true}
         case AUTH_FAILURE:
-
             return {...state,user:{},isLogged:false}
-        
+
 
         default:
             return state;

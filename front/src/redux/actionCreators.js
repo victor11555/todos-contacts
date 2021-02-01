@@ -17,7 +17,7 @@ export const getProfileAC = () => {
             dispatch(getProfileSuccess(user.user));
           } else {
             localStorage.removeItem("jwt");
-            dispatch(getProfileFailure(user.message));
+            dispatch(getProfileFailure());
           }
         });
     }
@@ -79,6 +79,7 @@ export const getProfileSuccess = (payload) => {
 };
 
 export const getProfileFailure = () => {
+  localStorage.removeItem("jwt");
   return {
     type: AUTH_FAILURE,
   };

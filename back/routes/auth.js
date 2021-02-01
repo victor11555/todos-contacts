@@ -11,8 +11,10 @@ const tokenKey = '1a2b-3c4d-5e6f-7g8h';
 
 router.post('/', async (req, res) => {
     const {token} = req.body;
-    console.log(token)
-    let data = jwt.verify(token, tokenKey)
+    let data = jwt.verify(token, tokenKey, (err, decoded)=> {
+        if(err)  res.json({success: false, message: 'token expired'});
+        return decoded
+    })
     const {id} = data;
     let user = await User.findOne({_id:id});
     if (user) {
