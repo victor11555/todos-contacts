@@ -47,7 +47,7 @@ function ContentPage(props) {
                     />
                 </Form.Group>
 
-                <Button className={'col-12 '} variant="primary" type="submit">
+                <Button className={'col-10 offset-1 '} variant="primary" type="submit">
                     Add to do
                 </Button>
             </Form>
