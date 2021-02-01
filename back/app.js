@@ -6,16 +6,16 @@ const useMiddleware = require('./middleware/index');
 
 const useErrorHandlers = require('./middleware/error-handlers');
 
-const mainRouter = require('./routes/main');
-const authRouter = require('./routes/auth');
 const todoRouter = require('./routes/todo');
+const authRouter = require('./routes/auth');
+const userRouter = require('./routes/user');
 
 
 useMiddleware(app);
 
-app.use('/main', mainRouter);
+app.use('/todos', todoRouter);
 app.use('/auth', authRouter);
-app.use('/todo', todoRouter);
+app.use('/users', userRouter);
 
 useErrorHandlers(app);
 
