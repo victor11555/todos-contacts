@@ -1,6 +1,5 @@
-import {AUTH_FAILURE, AUTH_SUCCESS, SIGN_UP} from '../actionTypes';
+import {AUTH_FAILURE, AUTH_SUCCESS, SIGN_UP, DEFAULT_STATE} from '../actionTypes';
 import {LOG_IN} from '../actionTypes';
-
 
 export function userReducer(state = {user:{},isLogged:false}, action) {
     switch (action.type) {
@@ -10,6 +9,7 @@ export function userReducer(state = {user:{},isLogged:false}, action) {
         case AUTH_FAILURE:
 
             return {...state,user:{},isLogged:false}
+        
 
         default:
             return state;

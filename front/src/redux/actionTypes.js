@@ -1,8 +1,11 @@
-export const SIGN_UP = 'SIGN_UP'
-export const LOG_IN = 'LOG_IN'
-export const ADD_CONTACT = 'ADD_CONTACT'
-export const EDIT_CONTACT = 'EDIT_CONTACT'
-export const DELETE_CONTACT = 'DELETE_CONTACT'
-export const GET_CONTACT = 'GET_CONTACT'
-export const AUTH_SUCCESS = 'AUTH_SUCCESS'
-export const AUTH_FAILURE = 'AUTH_FAILURE'
+export const SIGN_UP = "SIGN_UP";
+export const LOG_IN = "LOG_IN";
+export const ADD_CONTACT = "ADD_CONTACT";
+export const EDIT_CONTACT = "EDIT_CONTACT";
+export const DELETE_CONTACT = "DELETE_CONTACT";
+export const GET_CONTACT = "GET_CONTACT";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAILURE = "AUTH_FAILURE";
+export const DEFAULT_STATE = "DEFAULT_STATE";
+export const CLEAR_DATA = "CLEAR_DATA";
+
