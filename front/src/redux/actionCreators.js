@@ -1,5 +1,10 @@
 import { AUTH_FAILURE, AUTH_SUCCESS, DEFAULT_STATE } from "./actionTypes";
-import { GET_PROFILE_URL, LOGIN_URL, SIGN_UP_URL } from "../utils/urls";
+import {
+  GET_PROFILE_URL,
+  LOGIN_URL,
+  SIGN_UP_URL,
+  ADD_CONTACT_URL,
+} from "../utils/urls";
 
 const token = JSON.parse(localStorage.getItem("jwt"));
 
@@ -21,6 +26,27 @@ export const getProfileAC = () => {
           }
         });
     }
+  };
+};
+
+export const addContactAc = ({ contactId }) => {
+  return (dispatch) => {
+    fetch(ADD_CONTACT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token, contactId }),
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        if (user.success) {
+          //Все ок
+          dispatch(getProfileSuccess(user.user))
+
+
+        } else {
+          window.alert("User is not added");
+        } 
+      });
   };
 };
 
@@ -84,5 +110,4 @@ export const getProfileFailure = () => {
     type: AUTH_FAILURE,
   };
 };
-
 

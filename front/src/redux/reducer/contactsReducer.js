@@ -8,7 +8,7 @@ export function contactsReducer(state = [], action) {
     switch (action.type) {
         case ADD_CONTACT:
 
-            return action.payload;
+            return [...state,  ...action.payload]
         case EDIT_CONTACT:
 
             return action.payload;
