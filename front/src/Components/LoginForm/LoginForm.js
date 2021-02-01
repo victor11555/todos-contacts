@@ -2,7 +2,6 @@ import React from 'react';
 import {Button, Container, Form} from 'react-bootstrap'
 import {useDispatch} from "react-redux";
 import { logInAc } from '../../redux/actionCreators';
-import NavBar from "../NavBar/NavBar";
 
 function LoginForm({setState}) {
   const dispatch = useDispatch()

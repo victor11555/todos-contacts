@@ -25,7 +25,6 @@ export const getProfileAC = () => {
 }
 
 export const signUpAc = ({email, password, name, phone}) => {
-
     return (dispatch) => {
         fetch(SIGN_UP_URL,
             {
@@ -61,12 +60,10 @@ export const logInAc = ({email, password}) => {
             .then(user => {
                 if (user.success) {
                     console.log(user.token)
-                    localStorage.setItem('jwt', user.token)
-                    //Можем сразу отсюда писать юзера в в редакс...А можем и не писать, и пытаться заиметь профиль из useEffect'a
+                    localStorage.setItem('jwt', JSON.stringify(user.token))
                     dispatch(getProfileSuccess(user.user))
-
                 } else {
-                    console.log('Auth not succeed');
+                    window.alert('Auth not succeed');
                 }
             })
     }
