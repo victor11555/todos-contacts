@@ -11,9 +11,9 @@ function NavBar() {
             <Navbar.Brand as={Link} to="/main">Content</Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
-                {user.name&&isLogged?<Navbar.Text>
-                    Signed in as: {user.name}
-                </Navbar.Text>:<Navbar.text><Link to="/">Login</Link></Navbar.text>}
+                {user.name&&isLogged?<p>
+                        Signed in as: {user.name}
+                    </p>:<p><Link to="/">Login</Link></p>}
             </Navbar.Collapse>
         </Navbar>
     );
