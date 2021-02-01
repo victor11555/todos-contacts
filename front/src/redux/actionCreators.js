@@ -1,20 +1,23 @@
-import {AUTH_FAILURE, AUTH_SUCCESS, LOG_IN} from "./actionTypes";
+import {AUTH_FAILURE, AUTH_SUCCESS} from "./actionTypes";
 import {GET_PROFILE_URL, LOGIN_URL, SIGN_UP_URL} from "../utils/urls";
 
-const token = localStorage.getItem('jwt')
+const token = JSON.parse(localStorage.getItem('jwt'))
 
 export const getProfileAC = () => {
     return dispatch => {
         if (token) {
-            fetch(GET_PROFILE_URL, {
-                headers: {Authorization:`Bearer ${token}`,"Content-type":"Application/json"}
-            }).then(res => res.json())
+            fetch(GET_PROFILE_URL,
+                {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({token})
+                }).then(res => res.json())
                 .then(user => {
                     if (user.success) {
                         dispatch(getProfileSuccess(user.user))
                     } else {
                         localStorage.removeItem('jwt')
-                        dispatch(getProfileFailure(user.error))
+                        dispatch(getProfileFailure(user.message))
                     }
                 })
         }
@@ -36,8 +39,10 @@ export const signUpAc = ({email, password, name, phone}) => {
             .then(user => {
                 if (user.success) {
                     localStorage.setItem('jwt', JSON.stringify(user.token))
-                }
-                else {window.alert('User is not created') }//Будет логика с user.failure обрабатывать ошибки, все дела :))
+                    dispatch(getProfileSuccess(user.user))
+                } else {
+                    window.alert('User is not created')
+                }//Будет логика с user.failure обрабатывать ошибки, все дела :))
             })
     }
 }
@@ -58,7 +63,7 @@ export const logInAc = ({email, password}) => {
                     console.log(user.token)
                     localStorage.setItem('jwt', user.token)
                     //Можем сразу отсюда писать юзера в в редакс...А можем и не писать, и пытаться заиметь профиль из useEffect'a
-                    // dispatch(getProfileSuccess(user.user))
+                    dispatch(getProfileSuccess(user.user))
 
                 } else {
                     console.log('Auth not succeed');
