@@ -10,5 +10,7 @@ export const DEFAULT_STATE = "DEFAULT_STATE";
 export const CLEAR_DATA = "CLEAR_DATA";
 export const ADD_TODO = "ADD_TODO";
 export const EDIT_TODO = "EDIT_TODO";
+export const GET_POTENTIAL_CONTACTS = "GET_POTENTIAL_CONTACTS";
+export const GET_ALL_USERS = "GET_ALL_USERS"
 
 

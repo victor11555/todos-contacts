@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import { userReducer } from './userReducer'
-import { contactsReducer } from './contactsReducer'
+import { allUsersReducer } from './allUsersReducer'
+import { potentialContactsReducer } from './potentialContactsReducer'
 
 export const rootReducer = combineReducers({
-    contacts: contactsReducer,
     user: userReducer,
+    potentialContacts: potentialContactsReducer,
+    allUsers: allUsersReducer
 })
