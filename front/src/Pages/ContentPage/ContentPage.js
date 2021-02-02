@@ -3,7 +3,7 @@ import { Button, Col, Container, Form, ListGroup, Row } from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 import { useDispatch, useSelector } from "react-redux";
 import Userlist from "../../UserList/Userlist";
-import { addContactAc, addToDoAc, getProfileAC, allUsersAC } from "../../redux/actionCreators";
+import { addContactAc, addToDoAc, getProfileAC, allUsersAC, getPotencialContactsAC } from "../../redux/actionCreators";
 
 function ContentPage() {
     const dispatch = useDispatch()
@@ -12,11 +12,13 @@ function ContentPage() {
     useEffect(() => {
         dispatch(getProfileAC())
         dispatch(allUsersAC())
-        //  dispatch() Фира, солнышко, это тебе
+        dispatch(getPotencialContactsAC())
     }, [])
 
     const user = useSelector(state => state.user)
     const allUsers = useSelector(state => state.allUsers)
+    const potencialUser = useSelector(state => state.potentialContacts)
+    
     let values = []
     let values2 = []
     useEffect(() => {
@@ -30,7 +32,7 @@ function ContentPage() {
                 values2.push({ label: `${el.name} : ${el.phone}`, value: el._id })
             })
         }
-    }, [user.isLogged, user.user.contacts, allUsers])
+    }, [user.isLogged, user.user.contacts, allUsers, potencialUser])
 
     const handleSubmitAddContact = (e) => {
         e.preventDefault()
@@ -75,7 +77,7 @@ function ContentPage() {
                             </Button>
                             </Form.Group>
                         </Form>
-                        <Userlist />
+                        {potencialUser && <Userlist potentialContacts={potencialUser} />}
                     </Col>
                     <Col xs={5}>
                         <Form align={'center'} onSubmit={handleSubmit}>

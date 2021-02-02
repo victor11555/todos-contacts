@@ -3,7 +3,7 @@ import {Button, ListGroup} from "react-bootstrap";
 import {addContactAc} from '../redux/actionCreators';
 import {useDispatch} from 'react-redux'
 
-const Userlist = () => {
+const Userlist = ({potentialContacts}) => {
     const dispatch = useDispatch()
     const clickhandler = (e) => {
         e.preventDefault()
@@ -18,7 +18,7 @@ const Userlist = () => {
     return (
         <div>
             <ListGroup>
-                {userArr&&userArr.map(el=>{
+                {potentialContacts&&potentialContacts.map(el=>{
                     return <ListGroup.Item  key={el._id}><p align={'center'}>{el.name}</p><p align={'center'}>{el.number}</p><Button size={'sm'} block variant={'outline-info'} id={el._id} onClick={clickhandler} > Добавить
                     контакт</Button></ListGroup.Item>})}
             </ListGroup>
