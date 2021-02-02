@@ -3,7 +3,7 @@ import {Button, Col, Container, Form, ListGroup, Row} from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 import {useDispatch, useSelector} from "react-redux";
 import Userlist from "../../UserList/Userlist";
-import {addToDoAc, getProfileAC} from "../../redux/actionCreators";
+import {addContactAc, addToDoAc, getProfileAC} from "../../redux/actionCreators";
 
 function ContentPage(props) {
     const dispatch = useDispatch()
@@ -14,19 +14,35 @@ function ContentPage(props) {
 
     const user = useSelector(state => state.user)
     let values = []
+    let users = []
     useEffect(() => {
         if (user.isLogged) {
             user.user.contacts.map(el => {
-                values.push({label: `${el.name}: ${el.phone}`, value: el._id})
+                values.push({label: `${el.name} : ${el.phone}`, value: el._id})
             })
         }
+        // if(contacts){
+            // contacts.map(el => {
+            //     users.push({label: `${el.name} : ${el.phone}`, value: el._id})
+            // })
+        // }
     }, [user.isLogged,user.user.contacts])
+
+    const handleSubmitAddContact = (e) => {
+        e.preventDefault()
+        const {contacts} = e.target
+        let contactId = users.filter(el=> el.label == contacts.value)
+        dispatch(addContactAc({contactId}))
+        // let allUsers = здесь логика из стейта со всеми юзерами :)
+        }
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const {number, todo} = e.target
         let value = number.value.split(': ');
         let contact = user.user.contacts.filter((el) => value[0] === el.name && value[1] === el.phone)[0]
+        // let allUsers = здесь логика из стейта со всеми юзерами :)
         if(!contact) {
             dispatch(addToDoAc({withContact:false,contactId:'', todo}))
         }
@@ -42,6 +58,20 @@ function ContentPage(props) {
             <Container fluid>
                 <Row>
                     <Col>
+                        <Form onSubmit={handleSubmitAddContact}>
+                            <Form.Group  align={'center'}>
+                                <Form.Label >Найти контакт по имени</Form.Label>
+                        <Select name={'contacts'}
+                                options={users}
+                                closeOnSelect={true}
+                        />
+                            </Form.Group>
+                            <Form.Group>
+                            <Button variant="outline-info" size={'sm'} block type="submit">
+                                Add contact
+                            </Button>
+                            </Form.Group>
+                        </Form>
                         <Userlist/>
                     </Col>
                     <Col xs={5}>
