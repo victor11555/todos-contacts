@@ -1,11 +1,13 @@
 import React from 'react';
 import {Button, Col, Container, Form, ListGroup, Row} from 'react-bootstrap'
 import Select from 'react-dropdown-select'
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import { addToDoAc } from '../../redux/actionCreators';
 import Userlist from "../../UserList/Userlist";
 
 function ContentPage(props) {
 
+  const dispatch = useDispatch()
     const user = useSelector(state => state.user.contacts)
     let values = []
     if (user) {
@@ -21,8 +23,8 @@ function ContentPage(props) {
         (e) => {
             e.preventDefault()
             const {number, todo} = e.target
-            console.log(number.value, todo.value)
             //Здесь логика диспатча для добавления тудухи в базу!
+            dispatch(addToDoAc({ number, todo }))
         }
     return (
 

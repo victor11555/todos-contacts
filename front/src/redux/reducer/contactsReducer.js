@@ -1,8 +1,4 @@
-import {ADD_CONTACT} from '../actionTypes';
-import {EDIT_CONTACT} from '../actionTypes';
-import {DELETE_CONTACT} from '../actionTypes';
-import {GET_CONTACT} from '../actionTypes';
-
+import {ADD_CONTACT, GET_CONTACT, EDIT_CONTACT, DELETE_CONTACT} from '../actionTypes';
 
 export function contactsReducer(state = [], action) {
     switch (action.type) {
