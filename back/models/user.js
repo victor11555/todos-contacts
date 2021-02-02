@@ -7,11 +7,11 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   contacts: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'User',
   }],
   todos: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'todo',
+    ref: 'Todo',
   }],
 });
 
