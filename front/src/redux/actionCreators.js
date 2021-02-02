@@ -90,12 +90,13 @@ export const logInAc = ({email, password}) => {
     };
 };
 
-export const addToDoAc = ({contactId, todo}) => {
+export const addToDoAc = ({withContact, contactId, todo}) => {
     return (dispatch) => {
         fetch(ADD_TODO_URL, {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
+                withContact,
                 token,
                 contactId,
                 body: todo.value
