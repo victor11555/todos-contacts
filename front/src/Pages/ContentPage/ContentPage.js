@@ -30,14 +30,13 @@ function ContentPage() {
                 values2.push({ label: `${el.name} : ${el.phone}`, value: el._id })
             })
         }
-    }, [user.isLogged, user.user.contacts])
+    }, [user.isLogged, user.user.contacts, allUsers])
 
     const handleSubmitAddContact = (e) => {
         e.preventDefault()
         const { contacts } = e.target
         let contactId = values2.filter(el => el.label == contacts.value)
         dispatch(addContactAc({ contactId }))
-        // let allUsers = здесь логика из стейта со всеми юзерами :)
     }
 
 
@@ -46,7 +45,6 @@ function ContentPage() {
         const { number, todo } = e.target
         let value = number.value.split(': ');
         let contact = user.user.contacts.filter((el) => value[0] === el.name && value[1] === el.phone)[0]
-        // let allUsers = здесь логика из стейта со всеми юзерами :)
         if (!contact) {
             dispatch(addToDoAc({ withContact: false, contactId: '', todo }))
         }
@@ -55,7 +53,7 @@ function ContentPage() {
 
         }
     }
-    console.log(user)
+
     return (
 
         <>
@@ -68,6 +66,7 @@ function ContentPage() {
                                 <Select name={'contacts'}
                                     options={values2}
                                     closeOnSelect={true}
+                                        onChange={(values2)=>console.log(values2)}
                                 />
                             </Form.Group>
                             <Form.Group>
