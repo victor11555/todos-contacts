@@ -27,8 +27,15 @@ function ContentPage(props) {
         const {number, todo} = e.target
         let value = number.value.split(': ');
         let contact = user.user.contacts.filter((el) => value[0] === el.name && value[1] === el.phone)[0]
-        dispatch(addToDoAc({contactId: contact._id, todo}))
+        if(!contact._id) {
+            dispatch(addToDoAc({withContact:false,contactId:'', todo}))
+        }
+        else {
+            dispatch(addToDoAc({withContact:true,contactId: contact._id, todo}))
+
+        }
     }
+    console.log(user)
     return (
 
         <>
@@ -55,7 +62,9 @@ function ContentPage(props) {
                             </Button>
                         </Form>
                         <ListGroup style={{margin: '2rem'}} align={'center'}>
-                            <ListGroup.Item>Test todo </ListGroup.Item>
+                            {user.isLogged&&user.user.todos.map(el=>{
+                                return <ListGroup.Item>{el.body}</ListGroup.Item>
+                            })}
                         </ListGroup>
                     </Col>
                     <Col>
