@@ -34,7 +34,7 @@ router.post('/addcontact', async (req, res, next) => {
     const {contactId} = req.body;
     user.contacts.push(contactId);
     await user.save();
-    res.json({success: true, user})
+    res.json({success: true, contact: contactId})
 });
 
 module.exports = router;
