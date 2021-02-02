@@ -20,14 +20,14 @@ function ContentPage(props) {
                 values.push({label: `${el.name}: ${el.phone}`, value: el._id})
             })
         }
-    }, [user.isLogged])
+    }, [user.isLogged,user.user.contacts])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const {number, todo} = e.target
         let value = number.value.split(': ');
         let contact = user.user.contacts.filter((el) => value[0] === el.name && value[1] === el.phone)[0]
-        if(!contact._id) {
+        if(!contact) {
             dispatch(addToDoAc({withContact:false,contactId:'', todo}))
         }
         else {
