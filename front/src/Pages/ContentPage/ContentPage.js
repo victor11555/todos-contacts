@@ -3,7 +3,7 @@ import {Button, Col, Container, Form, ListGroup, Row} from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 import {useDispatch, useSelector} from "react-redux";
 import Userlist from "../../UserList/Userlist";
-import {getProfileAC} from "../../redux/actionCreators";
+import {getProfileAC, addToDoAc} from "../../redux/actionCreators";
 
 function ContentPage(props) {
 const dispatch = useDispatch()
@@ -27,6 +27,7 @@ const dispatch = useDispatch()
             const {number, todo} = e.target
             console.log(number.value, todo.value)
             //Здесь логика диспатча для добавления тудухи в базу!
+            dispatch(addToDoAc({ number, todo }))
         }
     return (
 
