@@ -1,24 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Col, Container, Form, ListGroup, Row} from 'react-bootstrap'
 import Select from 'react-dropdown-select'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Userlist from "../../UserList/Userlist";
+import {getProfileAC} from "../../redux/actionCreators";
 
 function ContentPage(props) {
+const dispatch = useDispatch()
 
-    const user = useSelector(state => state.user.contacts)
+    useEffect(()=>{
+        dispatch(getProfileAC())
+    }, [])
+
+    const user= useSelector(state => state.user)
     let values = []
-    if (user) {
-        values = user.map(el => el.map(user => {
-            return {label: user.name, value: user.phone}
-        }))
-    }
+    useEffect(()=>{
+        if(user.isLogged) {
+            user.user.contacts.map(el => {
+                values.push({label: el.name, value: el.phone})
+            })
+        }
+    }, [user.isLogged])
 
-    const options = [{label: 'fs', value: 'lalala'}, {label: '2323', value: '232323'}, {label: '242424'}] //тестовый массив юзеров
-    //Ебанем мапом по массиву контактов юзера, чтоб привести к виду: Label:value
-
-    const handleSubmit =
-        (e) => {
+    const handleSubmit = (e) => {
             e.preventDefault()
             const {number, todo} = e.target
             console.log(number.value, todo.value)

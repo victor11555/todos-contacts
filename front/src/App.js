@@ -7,11 +7,11 @@ import {getProfileAC} from "./redux/actionCreators";
 import {useDispatch} from "react-redux";
 
 function App() {
-    const dispatch=useDispatch()
-    useEffect(
-        ()=>
-        dispatch(getProfileAC())
-    ,[])
+    // const dispatch=useDispatch()
+    // useEffect(
+    //     ()=>
+    //     dispatch(getProfileAC())
+    // ,[])
   return (
       <div className="App">
         <NavBar />

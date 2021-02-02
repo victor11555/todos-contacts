@@ -64,7 +64,7 @@ export const signUpAc = ({ email, password, name, phone }) => {
       .then((user) => {
         if (user.success) {
           localStorage.setItem("jwt", JSON.stringify(user.token));
-          // dispatch(getProfileSuccess(user.user))
+          dispatch(getProfileSuccess(user.user))
         } else {
           window.alert("User is not created");
         } //Будет логика с user.failure обрабатывать ошибки, все дела :))
@@ -87,7 +87,7 @@ export const logInAc = ({ email, password }) => {
         if (user.success) {
           console.log(user.token);
           localStorage.setItem("jwt", JSON.stringify(user.token));
-          // dispatch(getProfileSuccess(user.user))
+          dispatch(getProfileSuccess(user.user))
         } else {
           window.alert("Auth not succeed");
         }
