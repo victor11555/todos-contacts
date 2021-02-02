@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getProfileFailure } from "../../redux/actionCreators";
+import {getProfileAC, getProfileFailure} from "../../redux/actionCreators";
 import { useDispatch } from 'react-redux'
 
 
 function NavBar() {
+    useEffect(() => {
+        dispatch(getProfileAC())
+    }, [])
   const { isLogged, user } = useSelector((state) => state.user);
   const  dispatch = useDispatch()
   return (
@@ -17,7 +20,7 @@ function NavBar() {
 
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
-        {user.name && isLogged ? (
+        {user && isLogged ? (
           <p>
             Signed in as: {user.name}
             <Navbar.Brand onClick={() => dispatch(getProfileFailure())} as={Link} to="/main">
