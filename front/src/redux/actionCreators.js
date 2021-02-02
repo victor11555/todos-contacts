@@ -41,11 +41,9 @@ export const addContactAc = ({ contactId }) => {
         if (user.success) {
           //Все ок
           dispatch(getProfileSuccess(user.user))
-
-
         } else {
           window.alert("User is not added");
-        } 
+        }
       });
   };
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container, Col, Form, ListGroup, ListGroupItem, Row} from 'react-bootstrap'
+import {Button, Col, Container, Form, ListGroup, Row} from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 import {useSelector} from "react-redux";
 import Userlist from "../../UserList/Userlist";
@@ -28,38 +28,38 @@ function ContentPage(props) {
 
         <>
             <Container fluid>
-            <Row>
-                <Col>
-                    <Userlist/>
-                </Col>
-                <Col xs={5}>
-                    <Form align={'center'} onSubmit={handleSubmit}>
-                        <Form.Group controlId="exampleForm.ControlInput1">
-                            <Form.Label>Enter your todo</Form.Label>
-                            <Form.Control name={'todo'} type="text" placeholder="Write your todo here"/>
-                        </Form.Group>
-                        <Form.Group  controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Select contact</Form.Label>
-                            <Select name={'number'}
-                                    options={values}
-                                    values={[]}
-                                    onChange={(value) => console.log(value)}
-                            />
-                        </Form.Group>
-                        <Button  variant="outline-info" size={'sm'} block type="submit">
-                            Add to do
-                        </Button>
-                    </Form>
-                    <ListGroup style={{margin:'2rem'}} align={'center'}  >
-                        <ListGroup.Item>Test todo </ListGroup.Item>
-                    </ListGroup>
-                </Col>
-                <Col>
-                    <ListGroup align={'center'}>
-                        <ListGroup.Item>Test todo </ListGroup.Item>
-                    </ListGroup>
-                </Col>
-            </Row>
+                <Row>
+                    <Col>
+                        <Userlist/>
+                    </Col>
+                    <Col xs={5}>
+                        <Form align={'center'} onSubmit={handleSubmit}>
+                            <Form.Group controlId="exampleForm.ControlInput1">
+                                <Form.Label>Enter your todo</Form.Label>
+                                <Form.Control name={'todo'} type="text" placeholder="Write your todo here"/>
+                            </Form.Group>
+                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                <Form.Label>Select contact</Form.Label>
+                                <Select name={'number'}
+                                        options={values}
+                                        values={[]}
+                                        onChange={(value) => console.log(value)}
+                                />
+                            </Form.Group>
+                            <Button variant="outline-info" size={'sm'} block type="submit">
+                                Add to do
+                            </Button>
+                        </Form>
+                        <ListGroup style={{margin: '2rem'}} align={'center'}>
+                            <ListGroup.Item>Test todo </ListGroup.Item>
+                        </ListGroup>
+                    </Col>
+                    <Col>
+                        <ListGroup align={'center'}>
+                            <ListGroup.Item>Test todo </ListGroup.Item>
+                        </ListGroup>
+                    </Col>
+                </Row>
             </Container>
         </>
     );

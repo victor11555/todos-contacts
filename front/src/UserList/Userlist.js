@@ -8,6 +8,7 @@ const Userlist = () => {
     const clickhandler = (e) => {
         e.preventDefault()
         dispatch(addContactAc({contactId: e.target.id}))
+        // dispatch(addContactAc({contactId: '60190328813d4e3297eefe99'}))
     }
     let userArr=[{name:'Oleg',number:12345,_id:32323},{name:'Nikolay',number:123123231,_id:123123}] //для теста. потом буду брать юзеров из стейта.
 
