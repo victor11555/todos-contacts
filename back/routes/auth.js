@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const User = require('../models/user');
+const Todo = require('../models/todo');
 
 const saltRounds = 12;
 const tokenKey = '1a2b-3c4d-5e6f-7g8h';
@@ -16,7 +17,7 @@ router.post('/', async (req, res) => {
         return decoded
     })
     const {id} = data;
-    let user = await User.findOne({_id:id});
+    let user = await User.findOne({_id:id}).populate('todos contacts');
     if (user) {
         res.json({success: true, user});
     } else {
@@ -28,7 +29,7 @@ router.post('/login', async (req, res, next) => {
     const {
         email, password,
     } = req.body;
-    let user = await User.findOne({email});
+    let user = await User.findOne({email}).populate('todos contacts');
     if (user && (await bcrypt.compare(password, user.password))) {
         let token = await jwt.sign({id: user._id}, tokenKey, {expiresIn: 60 * 24});
         res.json({success: true, token});

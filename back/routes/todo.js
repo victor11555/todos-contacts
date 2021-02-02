@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
+const User = require('../models/user');
 const Todo = require('../models/todo');
 
 router.get('/', async (req, res, next) => {
@@ -15,7 +16,7 @@ router.post('/addtodo', async (req, res, next) => {
         return decoded
     })
     const {id} = data;
-    let user = await User.findOne({_id:id});
+    let user = await User.findOne({_id:id}).populate('todos contacts');;
     const {contactId, body} = req.body;
     const todo = new Todo({
         body,

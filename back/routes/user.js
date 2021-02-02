@@ -4,6 +4,7 @@ const router = express.Router();
 const tokenKey = '1a2b-3c4d-5e6f-7g8h';
 
 const User = require('../models/user');
+const Todo = require('../models/todo');
 
 router.get('/', async (req, res, next) => {
     const {token} = req.body;
@@ -13,7 +14,7 @@ router.get('/', async (req, res, next) => {
     })
     const {id} = data;
     let user = await User.findOne({_id:id});
-    let users = await User.find().filter((el)=>!user.contacts.includes(el._id)).limit(10)
+    let users = await User.find().filter((el)=>!user.contacts.includes(el._id)).limit(10);
     console.log(users)
     if (users) {
         res.json({success: true, users});
@@ -29,7 +30,7 @@ router.post('/addcontact', async (req, res, next) => {
         return decoded
     })
     const {id} = data;
-    let user = await User.findOne({_id:id});
+    let user = await User.findOne({_id:id}).populate('todos contacts');;
     const {contactId} = req.body;
     user.contacts.push(contactId);
     await user.save();
