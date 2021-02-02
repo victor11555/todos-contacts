@@ -8,4 +8,7 @@ export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAILURE = "AUTH_FAILURE";
 export const DEFAULT_STATE = "DEFAULT_STATE";
 export const CLEAR_DATA = "CLEAR_DATA";
+export const ADD_TODO = "ADD_TODO";
+export const EDIT_TODO = "EDIT_TODO";
+
 

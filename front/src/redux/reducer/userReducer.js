@@ -1,5 +1,4 @@
-import {AUTH_FAILURE, AUTH_SUCCESS, SIGN_UP, DEFAULT_STATE} from '../actionTypes';
-import {LOG_IN} from '../actionTypes';
+import {AUTH_FAILURE, AUTH_SUCCESS} from '../actionTypes';
 
 export function userReducer(state = {user:{},isLogged:false}, action) {
     switch (action.type) {

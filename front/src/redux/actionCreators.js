@@ -1,10 +1,5 @@
-import { AUTH_FAILURE, AUTH_SUCCESS, DEFAULT_STATE } from "./actionTypes";
-import {
-  GET_PROFILE_URL,
-  LOGIN_URL,
-  SIGN_UP_URL,
-  ADD_CONTACT_URL,
-} from "../utils/urls";
+import { ADD_TODO, AUTH_FAILURE, AUTH_SUCCESS, DEFAULT_STATE } from "./actionTypes";
+import { GET_PROFILE_URL, LOGIN_URL, SIGN_UP_URL, ADD_CONTACT_URL, ADD_TODO_URL} from "../utils/urls";
 
 const token = JSON.parse(localStorage.getItem("jwt"));
 
@@ -95,6 +90,21 @@ export const logInAc = ({ email, password }) => {
   };
 };
 
+export const addToDoAc = ({number, todo}) => {
+  return (dispatch) => {
+    fetch(ADD_TODO_URL, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        number : number.value,
+        todo : todo.value
+      })
+    })
+    .then(res => res.json())
+    .then('Хуй знвет')
+  }
+}
+
 export const getProfileSuccess = (payload) => {
   return {
     type: AUTH_SUCCESS,
@@ -109,3 +119,9 @@ export const getProfileFailure = () => {
   };
 };
 
+export const addToDo = (payload) => {
+  return {
+    type: ADD_TODO,
+    payload
+  }
+}
