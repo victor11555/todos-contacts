@@ -17,7 +17,7 @@ const dispatch = useDispatch()
     useEffect(()=>{
         if(user.isLogged) {
             user.user.contacts.map(el => {
-                values.push({label:el.name, value:el.phone})
+                values.push({label: el.name, value: el.phone})
             })
         }
     }, [user.isLogged])
