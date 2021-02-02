@@ -117,12 +117,9 @@ export const addToDoAc = ({ withContact, contactId, todo }) => {
       }),
     })
       .then((res) => res.json())
-      .then((user) => {
-        if (user.success) {
-          dispatch(getProfileSuccess(user.user));
-        } else {
-          window.alert("Add todo not succeed");
-        }
+      .then((data) => {
+        console.log(data);
+          dispatch(addToDo(data));
       });
   };
 };
