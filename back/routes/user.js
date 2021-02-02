@@ -6,7 +6,11 @@ const tokenKey = '1a2b-3c4d-5e6f-7g8h';
 const User = require('../models/user');
 const Todo = require('../models/todo');
 
-router.post('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
+    let users = await User.find().filter((el)=>!user.contacts.includes(el._id))
+    res.json({success: true, users});
+});
+router.post('/potentialContacts', async (req, res, next) => {
     const {token} = req.body;
     let data = jwt.verify(token, tokenKey, (err, decoded)=> {
         if(err)  res.json({success: false, message: 'token expired'});
