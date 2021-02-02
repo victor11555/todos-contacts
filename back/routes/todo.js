@@ -20,10 +20,17 @@ router.post('/addtodo', async (req, res, next) => {
     const {id} = data;
     let user = await User.findOne({_id:id}).populate('todos contacts');;
     const {contactId, body} = req.body;
-    const todo = new Todo({
-        body,
-        contact: contactId,
-    })
+    let todo;
+    if(contactId) {
+        todo = new Todo({
+            body,
+            contact: contactId,
+        })
+    } else {
+        todo = new Todo({
+            body,
+        })
+    }
     await todo.save();
     user.todos.push(todo._id);
     await user.save();
