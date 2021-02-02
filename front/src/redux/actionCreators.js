@@ -136,13 +136,18 @@ export const addToDo = (payload) => {
 
 export const allUsersAC = () => {
     return (dispatch) => {
-        fetch(ALL_USERS_URL)
+        fetch(ALL_USERS_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token }),
+        })
             .then((res) => res.json())
-            .then((data) => {
-                if (data.success) {
-                    dispatch(allUsers(data.users))
+            .then((user) => {
+                if (user.success) {
+                    //Все ок
+                    dispatch(allUsers(user.users))
                 } else {
-                    window.alert(data.message);
+                    window.alert("Users is not fined");
                 }
             });
     };

@@ -6,8 +6,16 @@ const tokenKey = '1a2b-3c4d-5e6f-7g8h';
 const User = require('../models/user');
 const Todo = require('../models/todo');
 
-router.get('/', async (req, res, next) => {
-    let users = await User.find().filter((el)=>!user.contacts.includes(el._id))
+router.post('/', async (req, res, next) => {
+    const {token} = req.body;
+    let data = jwt.verify(token, tokenKey, (err, decoded)=> {
+        if(err)  res.json({success: false, message: 'token expired'});
+        return decoded
+    })
+    const {id} = data;
+    let user = await User.findOne({_id:id});
+    let users = await User.find();
+    users = [...users.filter((el)=>!user.contacts.includes(el._id) && user._id !== el._id)]
     res.json({success: true, users});
 });
 router.post('/potentialContacts', async (req, res, next) => {
@@ -18,8 +26,9 @@ router.post('/potentialContacts', async (req, res, next) => {
     })
     const {id} = data;
     let user = await User.findOne({_id:id});
-    let users = await User.find().filter((el)=>!user.contacts.includes(el._id)).limit(10);
-    console.log(users)
+    let users = await User.find();
+    users = [...users.filter((el)=>!user.contacts.includes(el._id) && user._id !== el._id)]
+    //limit 10
     if (users) {
         res.json({success: true, users});
     } else {
