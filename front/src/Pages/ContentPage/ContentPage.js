@@ -3,32 +3,32 @@ import {Button, Col, Container, Form, ListGroup, Row} from 'react-bootstrap'
 import Select from 'react-dropdown-select'
 import {useDispatch, useSelector} from "react-redux";
 import Userlist from "../../UserList/Userlist";
-import {getProfileAC, addToDoAc} from "../../redux/actionCreators";
+import {addToDoAc, getProfileAC} from "../../redux/actionCreators";
 
 function ContentPage(props) {
-const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getProfileAC())
     }, [])
 
-    const user= useSelector(state => state.user)
+    const user = useSelector(state => state.user)
     let values = []
-    useEffect(()=>{
-        if(user.isLogged) {
+    useEffect(() => {
+        if (user.isLogged) {
             user.user.contacts.map(el => {
-                values.push({label: el.name, value: el.phone})
+                values.push({label: `${el.name}: ${el.phone}`, value: el._id})
             })
         }
     }, [user.isLogged])
 
     const handleSubmit = (e) => {
-            e.preventDefault()
-            const {number, todo} = e.target
-            console.log(number.value, todo.value)
-            //Здесь логика диспатча для добавления тудухи в базу!
-            dispatch(addToDoAc({ number, todo }))
-        }
+        e.preventDefault()
+        const {number, todo} = e.target
+        let value = number.value.split(': ');
+        let contact = user.user.contacts.filter((el) => value[0] === el.name && value[1] === el.phone)[0]
+        dispatch(addToDoAc({contactId: contact._id, todo}))
+    }
     return (
 
         <>
@@ -47,8 +47,7 @@ const dispatch = useDispatch()
                                 <Form.Label>Select contact</Form.Label>
                                 <Select name={'number'}
                                         options={values}
-                                        values={[]}
-                                        onChange={(value) => console.log(value)}
+                                        closeOnSelect={true}
                                 />
                             </Form.Group>
                             <Button variant="outline-info" size={'sm'} block type="submit">
