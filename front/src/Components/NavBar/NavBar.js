@@ -26,7 +26,7 @@ function NavBar() {
           </p>
         ) : (
           <p>
-            <Link to="/">Login</Link>
+            <Link to="/login">Login</Link>
           </p>
         )}
       </Navbar.Collapse>

@@ -5,6 +5,7 @@ import ContentPage from './Pages/ContentPage/ContentPage';
 import {useEffect} from "react";
 import {getProfileAC} from "./redux/actionCreators";
 import {useDispatch} from "react-redux";
+import MainPage from './Pages/MainPage/MainPage';
 
 function App() {
     // const dispatch=useDispatch()
@@ -16,8 +17,9 @@ function App() {
       <div className="App">
         <NavBar />
         <Switch>
-          <Route exact path='/' component={LoginPage} />
+          <Route exact path='/login' component={LoginPage} />
           <Route exact path='/main' component={ContentPage} />
+          <Route exact path='/' component={MainPage} />
         </Switch>
       </div>
   );
