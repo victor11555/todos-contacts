@@ -117,9 +117,12 @@ export const addToDoAc = ({ withContact, contactId, todo }) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-          dispatch(addToDo(data));
+      .then((user) => {
+        if(user.success){
+          dispatch(addToDo(user.todo));
+        } else{
+          window.alert('todo not added')
+        }
       });
   };
 };
